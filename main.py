@@ -47,7 +47,7 @@ class Window(Gtk.Window):
         myG = G213Colors
         myG.connectG()
         myG.sendCycleCommand(self.sbGetValue(self.sbCycle))
-    	myG.saveData(myG.cycleCommand.format(str(format(self.sbGetValue(self.sbCycle), '04x'))))
+        myG.saveData(myG.cycleCommand.format(str(format(self.sbGetValue(self.sbCycle), '04x'))))
         myG.disconnectG()
 
     def sendSegments(self):
@@ -142,18 +142,18 @@ class Window(Gtk.Window):
 
 
 if "-t" in option:
-	myG = G213Colors
-	myG.connectG()
-	file = open(myG.confFile, "r") 
-	commands = file.readline().split(',')
-	for command in commands:
-		print command
-		myG.sendData(command)
-		sleep(0.01)
+    myG = G213Colors
+    myG.connectG()
+    file = open(myG.confFile, "r") 
+    commands = file.readline().split(',')
+    for command in commands:
+        print command
+        myG.sendData(command)
+        sleep(0.01)
 
-	myG.disconnectG()
-	sys.exit(0)
-
+    myG.disconnectG()
+    sys.exit(0)
+but 
 win = Window()
 win.connect("delete-event", Gtk.main_quit)
 win.show_all()
