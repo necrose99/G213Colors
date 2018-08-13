@@ -153,7 +153,6 @@ if "-t" in option:
 
     myG.disconnectG()
     sys.exit(0)
-but 
 win = Window()
 win.connect("delete-event", Gtk.main_quit)
 win.show_all()
