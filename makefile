@@ -3,6 +3,7 @@ install :
 	cp main.py /usr/bin/g213colors-gui
 	cp default.conf /etc/G213Colors.conf
 	cp g213colors.service /etc/systemd/system/g213colors.service
+	cp g213colors.openrc /etc/init.d/g213colors
 	chmod +x /usr/bin/G213Colors.py
 	chmod +x /usr/bin/g213colors-gui
 	cp icons/G213Colors-16.png /usr/share/icons/hicolor/16x16/apps/g213colors.png
@@ -20,6 +21,7 @@ uninstall :
 	rm /usr/bin/g213colors-gui
 	rm /etc/G213Colors.conf
 	rm /etc/systemd/system/g213colors.service
+	rm /etc/init.d/g213colors
 	rm /usr/share/icons/hicolor/16x16/apps/g213colors.png
 	rm /usr/share/icons/hicolor/24x24/apps/g213colors.png
 	rm /usr/share/icons/hicolor/32x32/apps/g213colors.png
