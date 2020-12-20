@@ -4,6 +4,8 @@ install :
 	cp default.conf /etc/G213Colors.conf
 	cp g213colors.service /etc/systemd/system/g213colors.service
 	cp g213colors.openrc /etc/init.d/g213colors
+	# fix permisions +x g213colors openrc wont fix perms and enable otherwise. found out the hardway.. 
+	chmod +x /etc/init.d/g213colors
 	chmod +x /usr/bin/G213Colors.py
 	chmod +x /usr/bin/g213colors-gui
 	cp icons/G213Colors-16.png /usr/share/icons/hicolor/16x16/apps/g213colors.png
@@ -15,7 +17,11 @@ install :
 	cp G213Colors.desktop /usr/share/applications/g213colors.desktop
 	cp be.jeroened.pkexec.g213colors.policy /usr/share/polkit-1/actions/
 	gtk-update-icon-cache -q /usr/share/icons/hicolor/
-	systemctl daemon-reload
+	#### probe /sbin/openrc if exisits add boot/default  runner else.. 
+	if ! [ -x "$(command -v /sbin/openrc)" ]; then
+ 	rc-update add g213colors default	
+  	elif 
+	 systemctl daemon-reload
 uninstall :
 	rm /usr/bin/G213Colors.py
 	rm /usr/bin/g213colors-gui
