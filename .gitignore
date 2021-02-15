@@ -1,0 +1,8 @@
+
+*.pyc
+
+description-pak
+
+*.deb
+
+doc-pak/
