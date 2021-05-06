@@ -1,3 +1,5 @@
+#### https://github.com/JeroenED/G213Colors/blob/master/makefile
+
 install :
 	cp G213Colors.py /usr/bin/G213Colors.py
 	cp main.py /usr/bin/g213colors-gui
@@ -17,11 +19,21 @@ install :
 	cp G213Colors.desktop /usr/share/applications/g213colors.desktop
 	cp be.jeroened.pkexec.g213colors.policy /usr/share/polkit-1/actions/
 	gtk-update-icon-cache -q /usr/share/icons/hicolor/
-	#### probe /sbin/openrc if exisits add boot/default  runner else.. 
-	if ! [ -x "$(command -v /sbin/openrc)" ]; then
- 	rc-update add g213colors default	
-  	elif 
-	 systemctl daemon-reload
+	
+install_check 
+## call checker splt to debug... 
+## https://unix.stackexchange.com/questions/603997/makefile-file-exists-check-not-consistent
+# https://unix.stackexchange.com/questions/121654/convenient-way-to-check-if-system-is-using-systemd-or-sysvinit-in-bash
+
+install_check :	 
+#### probe /sbin/openrc if exisits add boot/default  runner else.. enable systemd 
+	#check: /sbin/openrc
+	if ! [ -x "$(command -v /sbin/openrc)" ]; then \
+ 	rc-update add g213colors default \	
+  	elif \
+	else systemctl daemon-reload \
+        fi
+	#check: /usr/lib/systemd/systemd 	
 uninstall :
 	rm /usr/bin/G213Colors.py
 	rm /usr/bin/g213colors-gui
